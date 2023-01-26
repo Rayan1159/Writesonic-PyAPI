@@ -5,7 +5,7 @@ import requests
 class ChatSonic:
     token = ""
 
-    def __int__(self, token=None):
+    def  __init__(self, token):
         """
         :param token:
         :return: None
