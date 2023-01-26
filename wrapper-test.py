@@ -13,12 +13,12 @@ if __name__ == "__main__":
         enable_memory=True,
         input_text="Hello",
         enable_google_results=True,
-        language="en",
+        language="ens",
         engine="premium"
     )
 
     try:
-        print(chat_sonic.get_response_as_string())
+        print(chat_sonic.get_response_as_dict())
     except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError, TypeError) as e:
         print(e)
 pass

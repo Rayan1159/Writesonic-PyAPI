@@ -2,7 +2,8 @@ import json
 
 from ..http import request
 from ..globals import globals
-from ..exceptions import language_not_supported as LanguageException
+from ..exceptions import language_exception as LanguageException
+from ..exceptions import engine_exception as EngineException
 import requests
 
 
@@ -109,8 +110,8 @@ class ChatSonic:
                     except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError, TypeError) as e:
                         print(e)
                 else:
-                    raise LanguageException.LanguageNotSupported(f"Engine {self.engine} not supported")
+                    raise EngineException.InvalidEngineException
             else:
-                raise ValueError(f"Language {self.language} not supported")
+                raise LanguageException.LanguageNotSupported("Language not supported")
         else:
             raise TypeError("token, enable_memory, input_text, and enable_google_results must be a string or bool")
