@@ -94,7 +94,8 @@ class ChatSonic:
             if language_supported:
                 if engine_supported:
                     try:
-                        json_object = req.post("https://api.writesonic.com/v2/business/content/chatsonic", query={
+                        json_object = req.post(
+                            "https://api.writesonic.com/v2/business/content/chatsonic", query={
                             "engine": self.engine,
                             "language": self.language
                         }, data={
