@@ -5,12 +5,13 @@ from ..abstract_classes import abstract_request as AbstractRequest
 
 class Request(AbstractRequest.AbstractRequest):
 
-    def post(self, url, data=None, headers=None) -> dict | None:
+    def post(self, url, data=None, query=None, headers=None) -> dict | None:
         """
         Makes a POST Request to one of writesonic's API endpoints
 
         :param url:
         :param data:
+        :param query:
         :param headers:
         :return: dict | None
 
@@ -19,9 +20,10 @@ class Request(AbstractRequest.AbstractRequest):
 
         is_data_dict = type(data) is dict
         is_headers_dict = type(headers) is dict
+        is_query_dict = type(query) is dict
 
-        if is_data_dict and is_headers_dict:
-            response = requests.post(url, data=json.dumps(data), headers=headers)
+        if is_data_dict and is_headers_dict and is_query_dict:
+            response = requests.post(url, params=query, data=json.dumps(data), headers=headers)
 
             if response is not None:
                 if response.status_code == 200:
@@ -32,5 +34,5 @@ class Request(AbstractRequest.AbstractRequest):
             else:
                 raise requests.exceptions.ConnectionError("No response from server")
         else:
-            raise TypeError("data and headers must be a dict")
+            raise TypeError("query, data and headers must be a dict")
         pass

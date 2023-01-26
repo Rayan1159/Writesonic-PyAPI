@@ -8,10 +8,17 @@ if __name__ == "__main__":
     And is only meant to be used for command line testing.  
     
     """
-    chat_sonic = ChatSonic.ChatSonic(token="1a39b2fb-bd07-4508-b0b1-142c32e5daec", enable_memory=True, input_text="Hello", enable_google_results=True)
+    chat_sonic = ChatSonic.ChatSonic(
+        token="",
+        enable_memory=True,
+        input_text="Hello",
+        enable_google_results=True,
+        language="en",
+        engine="premium"
+    )
 
     try:
-        print(chat_sonic.get_response_as_array())
+        print(chat_sonic.get_response_as_string())
     except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError, TypeError) as e:
         print(e)
 pass
