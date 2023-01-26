@@ -10,10 +10,12 @@ class ChatSonic:
     input_text = None
     enable_google_results = False
 
-    def  __init__(self, token, input_text, enable_memory, enable_google_results):
+    def __init__(self, token, input_text, enable_memory, enable_google_results):
         """
         :param token:
-        :return: None
+        :param input_text:
+        :param enable_memory:
+        :param enable_google_results:
         """
 
         self.token = token
