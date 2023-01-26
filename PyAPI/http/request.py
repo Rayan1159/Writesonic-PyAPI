@@ -1,16 +1,9 @@
 import requests
 import json
+from ..abstract_classes import abstract_request as AbstractRequest
 
 
 class Request(AbstractRequest.AbstractRequest):
-    token = ""
-    enable_memory = False
-
-    def __init__(self, token=None, enable_memory=False):
-        self.token = token
-        self.enable_memory = enable_memory
-
-    pass
 
     def post(self, url, data=None, headers=None) -> dict | None:
         """
@@ -20,6 +13,8 @@ class Request(AbstractRequest.AbstractRequest):
         :param data:
         :param headers:
         :return: dict | None
+
+        :exception requests.exceptions.HTTPError, requests.exceptions.ConnectionError, TypeError
         """
 
         is_data_dict = type(data) is dict
