@@ -42,18 +42,18 @@ class ArticleIdeas:
     def read_file(self):
         # TODO Add support for JSON, XML and Excel files
 
-        topic = ""
+        topic_content = ""
         input_text = ""
 
         if self.input_file is not None:
             if self.input_file.endswith(".txt"):
                 with open(self.input_file, "r") as file:
                     input_text = file.read()
-                    topic = input_text.split("\n")[0]
+                    topic = input_text.split("\n")[0].split(":")
                 pass
             pass
         pass
-        return [topic, input_text]
+        return [topic_content, input_text]
     pass
 
     def get_response_as_dict(self):
