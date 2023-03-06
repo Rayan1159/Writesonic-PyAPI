@@ -13,7 +13,7 @@ if __name__ == "__main__":
         enable_memory=True,
         input_text="Hello",
         enable_google_results=True,
-        language="ens",
+        language="en",
         engine="premium"
     )
 
