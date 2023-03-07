@@ -1,3 +1,0 @@
-[console_scripts]
-wsdelt = writesonic_pyapi.cli_commands.token:clear_token
-wsset = writesonic_pyapi.cli_commands.token:set_token

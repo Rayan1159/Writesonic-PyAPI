@@ -1,7 +1,0 @@
-LICENSE
-setup.py
-writesonic_pyapi.egg-info/PKG-INFO
-writesonic_pyapi.egg-info/SOURCES.txt
-writesonic_pyapi.egg-info/dependency_links.txt
-writesonic_pyapi.egg-info/entry_points.txt
-writesonic_pyapi.egg-info/top_level.txt
