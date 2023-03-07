@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 # Made by niveus (Rayan1159) -> https://github.com/Rayan1159
 
 setup(
-    name='writesonic-pyapi',
+    name='writesonic_pyapi',
     version='1.0.0',
     description='A Python API for Writesonic',
     url='https://docs.writesonic-pyapi.dev',
@@ -21,4 +21,10 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     python_requires='>=3.6',
+    entry_points = {
+        'console_scripts': [
+            'wsset = writesonic_pyapi.cli_commands.token:set_token',
+            'wsdelt = writesonic_pyapi.cli_commands.token:clear_token',
+        ]
+    }
 )

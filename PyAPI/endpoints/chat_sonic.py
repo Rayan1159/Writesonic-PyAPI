@@ -44,7 +44,7 @@ class ChatSonic:
         :exception requests.exceptions.HTTPError, requests.exceptions.ConnectionError, TypeError
         """
 
-        response = self.get_response()
+        response = self.get_response_as_dict()
 
         word_array = []
         message = response["message"]

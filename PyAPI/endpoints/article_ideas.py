@@ -64,12 +64,12 @@ class ArticleIdeas:
         :rtype: dict
         """
 
-        is_token_set = self.token is str and not None
-        is_language_set = self.language is str and not None
-        is_input_text_set = self.input_text is str and not None
-        is_enable_memory_set = self.enable_memory is bool and not None
-        is_enable_google_results_set = self.enable_google_results is bool and not None
-        is_engine_set = self.engine is str and not None
+        is_token_set = type(self.token) is str and not None
+        is_language_set = type(self.language) is str and not None
+        is_input_text_set = type(self.input_text) is str and not None
+        is_enable_memory_set = type(self.enable_memory) is bool and not None
+        is_enable_google_results_set = type(self.enable_google_results) is bool and not None
+        is_engine_set = type(self.engine) is str and not None
 
         if is_token_set and is_language_set and is_input_text_set or self.input_file is not None and is_enable_memory_set and is_enable_google_results_set and is_engine_set:
             req = request.Request()

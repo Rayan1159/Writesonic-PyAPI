@@ -19,14 +19,26 @@ class AppSms:
         self.num_copies = num_copies
         pass    
 
-    def get_response_as_string(self) -> str:
+    def get_response_as_string(self, ) -> str:
         """
         This function parses the response from "get_response_as_dict" to a string,
         When it's done the function returns the parsed dict as a string.
         """
 
-        response = str(response["message"])
-        return response;
+        response = self.get_response_as_dict()
+        word_array = []
+        message = response["text"]
+
+        for word in message.split(" "):
+            word_array.append(word)
+        pass
+        
+        string = ""
+        for word in word_array:
+            string += word + " "
+        pass
+
+        return string
 
     def get_response_as_dict(self) -> dict:
         """ 
@@ -71,7 +83,6 @@ class AppSms:
                 raise LanguageException.LanguageException("Language not supported")
             pass
         else:
-            print("token ->", self.token, "description ->", self.description, "engine ->", self.engine, "language ->", self.language, "copies ->", self.num_copies)
             raise TypeError("One or more arguments are not set")
         pass
     pass
