@@ -1,12 +1,14 @@
 from setuptools import setup, find_packages
 
+# A Python API for Writesonic
+# Made by niveus (Rayan1159) -> https://github.com/Rayan1159
+
 setup(
     name='writesonic-pyapi',
     version='1.0.0',
     description='A Python API for Writesonic',
     url='https://docs.writesonic-pyapi.dev',
     author='Rayan1159 (Niveus)',
-    github='https://github.com/Rayan1159/Writesonic-PyAPI',
     requires=['requests'],
     packages=find_packages(),
     classifiers=[

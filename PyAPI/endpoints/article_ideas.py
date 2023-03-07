@@ -2,6 +2,7 @@ import requests
 from ..http import request
 from ..exceptions import language_exception as LanguageException
 from ..exceptions import engine_exception as EngineException
+from ..exceptions import no_file_exception as NoFileException
 from ..globals import globals
 
 
@@ -16,18 +17,7 @@ class ArticleIdeas:
     input_file = None
     num_copies = 1
 
-    def get_response(
-        self,
-        token,
-        language,
-        topic,
-        input_text,
-        enable_memory,
-        enable_google_results,
-        engine,
-        input_file=None,
-        num_copies=1
-    ) -> {}:
+    def __init__(self, token, language, topic, input_text, enable_memory, enable_google_results, engine, input_file, num_copies=1) -> None:
         self.token = token
         self.language = language
         self.topic = topic
@@ -39,24 +29,41 @@ class ArticleIdeas:
         self.num_copies = num_copies
         pass
 
-    def read_file(self):
-        # TODO Add support for JSON, XML and Excel files
+    def get_response_as_string(self):
+        """
+        This function parses the response from "get_response_as_dict" to a string,
+        When it's done the function returns the parsed dict as a string.
 
-        topic_content = ""
-        input_text = ""
+        :param self: The object itself
+        :type self: object
+        :return: The parsed dict as a string
+        :rtype: str
+        """
 
-        if self.input_file is not None:
-            if self.input_file.endswith(".txt"):
-                with open(self.input_file, "r") as file:
-                    input_text = file.read()
-                    topic = input_text.split("\n")[0].split(":")
-                pass
-            pass
+        file_topic = ""
+        file_content = ""
+
+        if self.input_file is not None and self.input_file.endswith(".txt"):
+            file_topic = self.input_file.split(".")[0]
+            file_content = open(self.input_file, "r").read()
+            return [file_topic, file_content]
+        elif not self.input_file.endwiths(".txt"):
+            raise TypeError("File must be a .txt file") 
+        elif self.input_file is None:
+            raise NoFileException.NoFileException("No file was provided")    
         pass
-        return [topic_content, input_text]
-    pass
 
     def get_response_as_dict(self):
+        """
+        This function makes a request to the v2/business/content/article-ideas endpoint.
+        And returns the response as a dictionary.
+
+        :param self: The object itself
+        :type self: object
+        :return: The response as a dictionary
+        :rtype: dict
+        """
+
         is_token_set = self.token is str and not None
         is_language_set = self.language is str and not None
         is_input_text_set = self.input_text is str and not None
@@ -68,15 +75,6 @@ class ArticleIdeas:
             req = request.Request()
             is_language_supported = self.language in globals.supported_lang
             is_engine_supported = self.engine in globals.engines
-
-            def get_file_topic():
-                topic = ""
-                is_set = self.input_file if self.input_file is not None else False
-                if is_set:
-                    topic = self.read_file()[0]
-                pass
-                return topic
-            pass
 
             if is_language_supported:
                 if is_engine_supported:

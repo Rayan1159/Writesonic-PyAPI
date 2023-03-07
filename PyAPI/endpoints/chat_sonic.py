@@ -6,7 +6,6 @@ from ..exceptions import language_exception as LanguageException
 from ..exceptions import engine_exception as EngineException
 import requests
 
-
 class ChatSonic:
     token = ""
     language = ""
@@ -15,7 +14,13 @@ class ChatSonic:
     enable_google_results = False
     engine = ""
 
-    def __init__(self, token, language, input_text, enable_memory, enable_google_results, engine):
+    def __init__(self,
+                 token, 
+                 language, 
+                 input_text,
+                 enable_memory, 
+                 enable_google_results,
+                 engine):
         """
         :param token:
         :param input_text:
